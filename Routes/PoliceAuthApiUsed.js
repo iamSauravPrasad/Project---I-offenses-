@@ -5,7 +5,7 @@ App = {
         data =this.getapi(api_url).then(data=>{
             
             for(var i = 0; i <= data.length; i++) {
-                var a = "<tr><td>"+data[i].reported_id+"</td><td>"+data[i].user_id+"</td><td>"+data[i].f_name+"</td><td><span class='material-icons' data-target='#changedata' onclick='display("+data[i].reported_id+")'>edit</span></td></tr>";
+                var a = "<tr  scope='row'><td>"+data[i].reported_id+"</td><td>"+data[i].user_id+"</td><td>"+data[i].f_name+"</td><td><span class='material-icons' data-target='#changedata' onclick='display("+data[i].reported_id+")'>edit</span></td></tr>";
 
                 tab_Content.innerHTML += a;
             }
