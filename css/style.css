@@ -131,6 +131,11 @@ body {
 	font-family: 'Poppins', sans-serif;
 }
 
+.tablecss{
+	border: #000000;
+	border-radius: 2ch;
+}
+
 a{
 	text-decoration:none;
 	cursor:pointer;
