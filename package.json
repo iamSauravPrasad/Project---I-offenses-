@@ -1,0 +1,31 @@
+{
+  "name": "project---i-offenses-",
+  "version": "1.0.0",
+  "description": "OFFENSES : Crime database",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon Routes/PoliceAuthenticateapi.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KSauravP/Project---I-offenses-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KSauravP/Project---I-offenses-/issues"
+  },
+  "homepage": "https://github.com/KSauravP/Project---I-offenses-#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "jquery": "^3.6.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
