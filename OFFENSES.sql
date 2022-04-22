@@ -55,6 +55,8 @@ curr_status varchar(20)
 );
 
 select * from litigation;
+delete from litigation where crime_id between 1 and 14 ;
+
 drop table litigation;
 desc litigation;
 
