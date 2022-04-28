@@ -4,7 +4,6 @@ var app = express();
 const parser = require('body-parser');
 app.use(parser.json());
 
-
 let cors = require("cors");
 app.use(cors());
 const PORT = 5000;
@@ -36,7 +35,7 @@ app.get('/reported_crime',(req,res)=>{
     })
 });
 
-//Get all the reported crimes list
+//Get reported crimes list by id
 app.get('/reported_crimes/:id', (req, res) => {
     sqlconnection.query('SELECT * FROM reported_crime WHERE reported_id = ?', [req.params.id], (err, rows, fields) => {
         if (!err)
@@ -45,19 +44,6 @@ app.get('/reported_crimes/:id', (req, res) => {
             console.log(err);
     })
 });
-
-/*create table litigation(
-crime_id int primary key auto_increment,
-crime_type varchar(20),
-crime_place  varchar(20),
-crime_time time,
-crime_description varchar(1000),
-area_pin int,
-Foreign key(area_pin) references area(area_pin),
-police_id int,
-Foreign key(police_id) references police(police_id),
-curr_status varchar(20)
-);*/
 
 //Add a report to litigation
 app.post('/Authenticateinsert', (req, res) => {
@@ -71,3 +57,28 @@ app.post('/Authenticateinsert', (req, res) => {
             console.log(err);
     })
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Police Authenticate Withdrawl request
+//Get all the reported crimes list
+app.get('/withdraw_crime',(req,res)=>{
+    sqlconnection.query('SELECT * FROM withdrawals WHERE reported_id IN(SELECT reported_id FROM reported_crime WHERE user_id IN (SELECT user_id FROM users WHERE ',(err,rows,fields)=>{
+        if(!err)
+            res.send(rows);
+        else
+            console.log(err);
+    })
+});
+

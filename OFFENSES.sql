@@ -1,6 +1,5 @@
 create database offenses;
 use offenses;
-drop database offenses;
 
 create table login(
 login_id int primary key,
@@ -9,7 +8,6 @@ user_type varchar(20)
 );
 
 select * from login;
-drop table login;
 desc login;
 
 create table area(
@@ -24,7 +22,6 @@ insert into area values
 (700088,'Tartala','Kolkata','Kolkata','West Bengal');
 
 select * from area;
-drop table area;
 desc area;
 
 
@@ -37,7 +34,6 @@ police_designation varchar(40)
 
 insert into police(police_name, police_dob,police_designation) values ("Deepit","2000-10-15","IPS");
 select * from police;
-drop table police;
 desc police;
 
 
@@ -55,9 +51,8 @@ curr_status varchar(20)
 );
 
 select * from litigation;
-delete from litigation where crime_id between 1 and 14 ;
+-- delete from litigation where crime_id between 1 and 14 ;
 
-drop table litigation;
 desc litigation;
 
 create table users(
@@ -73,7 +68,6 @@ insert into users values
 (1,'saurav','Prasad','cdsbhcbsd','taratala','9830403211');
 
 select * from users;
-drop table users;
 desc users;
 
 create table missing_record(
@@ -88,7 +82,6 @@ missing_pic varchar(100)
 );
 
 select * from missing_record;
-drop table missing_record;
 desc missing_record;
 
 create table reported_crime(
@@ -109,7 +102,6 @@ insert into reported_crime values
 (1,1,700088,'20:15:00','2022:04:21','Murder','bla blah blah','taratala','zvhjcashcj');
 
 select * from reported_crime;
-drop table reported_crime;
 desc reported_crime;
 
 create table withdrawals(
@@ -122,7 +114,6 @@ request_reason varchar(100)
 );
 
 select * from withdrawals;
-drop table withdrawals;
 desc withdrawals;
 
 create table suspect(
@@ -136,7 +127,6 @@ suspect_desc varchar(50)
 );
 
 select * from suspect;
-drop table suspect;
 desc suspect;
 
 create table criminal(
@@ -150,7 +140,6 @@ crimianl_photo varchar(100)
 );
 
 select * from criminal;
-drop table criminal;
 desc criminal;
 
 create table victims(
@@ -163,7 +152,6 @@ victim_address varchar(100)
 );
 
 select * from victims;
-drop table victims;
 desc victims;
 
 create table admin(
@@ -175,5 +163,4 @@ authorized_by int
 
 
 select * from admin;
-drop table admin;
 desc admin;

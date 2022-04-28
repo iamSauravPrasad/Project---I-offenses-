@@ -4,7 +4,7 @@
   "description": "OFFENSES : Crime database",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon Routes/PoliceAuthenticateapi.js"
+    "start": "nodemon Routes/PoliceApi.js"
   },
   "repository": {
     "type": "git",
