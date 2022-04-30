@@ -7,6 +7,11 @@ login_password Varchar(20) not null,
 user_type varchar(20)
 );
 
+insert into login values
+(4444,'subhajit','others'),
+(5555,'saurav','police');
+
+
 select * from login;
 desc login;
 
