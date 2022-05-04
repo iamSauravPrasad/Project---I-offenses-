@@ -6,11 +6,14 @@ const parser = require('body-parser');
 
 
 var app = express();
+var genuuid = require('uuid/v4');
+
 let cors = require("cors");
 app.use(cors());
 app.use(cookieParser());
 app.use(parser.urlencoded({extended: true}));
 
+const oneDay = 1000 * 60 * 60 * 24;
 app.use(
     session({
         key: "userId",
@@ -18,13 +21,27 @@ app.use(
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 60 * 60 * 24,
+            maxAge: oneDay,
         },
     })
 );
 
 const PORT = 5000;
 
+
+app.use(
+    session({
+        name:'SessionCookie',
+        genid: function(req) {
+            console.log.log('session id generated');
+            return genuuid();
+        },
+        secret: "Shsh!Secret!",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {secure: false, maxAge: oneDay}
+        })
+);
 
 
 app.listen(PORT, () => console.log(`Server Running on port: http://localhost:${PORT}`));
@@ -85,9 +102,9 @@ app.get('/suser/:id',(req,res)=>{
     sqlconnection.query('SELECT * FROM login WHERE login_id =? ',[req.params.id],(err,rows,fields)=>{
         if(!err)
         {
-            req.session.user = rows;
-            console.log(req.session.user);
-            res.send(req.session.user);
+            // req.session.username = rows[0].login_id;
+            // console.log(rows[0].login_id);
+            res.send(rows);
         }
         else
             console.log(err);
@@ -95,19 +112,7 @@ app.get('/suser/:id',(req,res)=>{
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-//Police Authenticate Withdrawl request
-//Get all the reported crimes list
+// <-----------------------------------------------Get all the withdraw request list for the logged in user------------------------------------------------!>
 app.get('/withdraw_crime',(req,res)=>{
     sqlconnection.query('SELECT * FROM withdrawals WHERE reported_id IN(SELECT reported_id FROM reported_crime WHERE user_id IN (SELECT user_id FROM users WHERE ',(err,rows,fields)=>{
         if(!err)

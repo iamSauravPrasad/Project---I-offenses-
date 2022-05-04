@@ -1,14 +1,8 @@
-import Axios from 'axios';
-import React from 'react';
-import {useState} from React;
-
-Axios.defaults.withCredentials = true;
-
-
 App = {
     getreported: function() {
         const api_url ="http://localhost:5000/reported_crime";
         // console.log(api_url);
+        // let usr_name = sessionStorage.getItem('usrname');
         data =this.getapi(api_url).then(data=>{
             
             for(var i = 0; i <= data.length; i++) {
@@ -25,7 +19,7 @@ App = {
         const api_url ="http://localhost:5000/reported_crimes/"+i;
        
         // /* console.log(api_url);reported_id int primary key	auto_increment,
-
+        
         data =this.getapi(api_url).then(data=>{
             console.log("in");
                 x.elements[0].value = data[0].reported_id,
@@ -77,9 +71,10 @@ App = {
             {
                 if(data[0].login_password==usr_passw)
                 {
+                    sessionStorage.setItem('usrname',data[0].login_id)
                     if(data[0].user_type == "police" || data[0].user_type == "Police" || data[0].user_type == "POLICE")
                     {
-                        window.location.href = 'http://127.0.0.1:5500/HTML/PoliceAuthenticate.html';
+                        window.location.href = 'http://127.0.0.1:5501/HTML/PoliceAuthenticate.html';
                     }
                     else if(data[0].user_type == "admin" || data[0].user_type == "Admin" || data[0].user_type == "ADMIN")
                     {
@@ -87,7 +82,7 @@ App = {
                     }
                     else
                     {
-                        window.location.href = 'http://127.0.0.1:5500/HTML/PoliceWithdraw.html';
+                        window.location.href = 'http://127.0.0.1:5501/HTML/PoliceWithdraw.html';
                     }
                 }
                 else{
