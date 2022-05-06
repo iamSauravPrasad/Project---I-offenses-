@@ -1,19 +1,12 @@
 create database offenses;
 use offenses;
 
+
 create table login(
 login_id int primary key,
 login_password Varchar(20) not null,
 user_type varchar(20)
 );
-
-insert into login values
-(4444,'subhajit','others'),
-(5555,'saurav','police');
-
-
-select * from login;
-desc login;
 
 create table area(
 area_pin int primary key,
@@ -169,3 +162,17 @@ authorized_by int
 
 select * from admin;
 desc admin;
+
+
+
+
+
+
+-- trigger
+-- create trigger insert_users AFTER insert on login for each row
+-- begin
+-- if (login.user_type like "police")
+-- then 
+-- insert into police(
+
+

@@ -6,9 +6,11 @@ const parser = require('body-parser');
 
 
 var app = express();
+app.use(express.json());
 var genuuid = require('uuid/v4');
 
 let cors = require("cors");
+const res = require('express/lib/response');
 app.use(cors());
 app.use(cookieParser());
 app.use(parser.urlencoded({extended: true}));
@@ -84,13 +86,16 @@ app.get('/reported_crimes/:id', (req, res) => {
 });
 
 //<-----------------------------------------------Add a report to litigation-------------------------------------------------->
-app.post('/Authenticateinsert', (req, res) => {
-    console.log(req);
-    let auth = req.body.authenticate;
+app.post('/authenticateinsert', (req, res) => {
+//    console.log(req.body);
+    let auth = req.body.auth;
     console.log(auth);
-    sqlconnection.query("insert into litigation(crime_type,crime_place,crime_time,crime_description,area_pin,police_id) values('"+auth.crime_type+"','"+auth.crime_place+"','"+auth.crime_time+"','"+auth.crime_time+"',"+auth.area_pin+","+auth.police_id+");", (err, rows, fields) => {
+    sqlconnection.query("insert into litigation(crime_type,crime_place,crime_time,crime_description,area_pin,police_id) values('"+auth.crime_type+"','"+auth.crime_place+"','"+auth.crime_time+"','"+auth.crime_description+"',"+auth.area_pin+","+auth.police_id+");", (err, rows, fields) => {
         if (!err)
+        {
+            console.log("Submitted");
             res.send('Inserted successfully');
+        }
         else
             console.log(err);
     })
@@ -113,12 +118,63 @@ app.get('/suser/:id',(req,res)=>{
 
 
 // <-----------------------------------------------Get all the withdraw request list for the logged in user------------------------------------------------!>
+// app.get('/withdraw_crime/:id',(req,res)=>{
+//     sqlconnection.query('SELECT * FROM withdrawals WHERE reported_id IN(SELECT reported_id FROM reported_crime WHERE user_id = ?)',[req.params.id],(err,rows,fields)=>{
+//         if(!err)
+//             res.send(rows);
+//         else
+//             console.log(err);
+//     })
+// });
+
+
+// <-----------------------------------------------Get all the withdraw request list------------------------------------------------!>
 app.get('/withdraw_crime',(req,res)=>{
-    sqlconnection.query('SELECT * FROM withdrawals WHERE reported_id IN(SELECT reported_id FROM reported_crime WHERE user_id IN (SELECT user_id FROM users WHERE ',(err,rows,fields)=>{
+    sqlconnection.query('SELECT * FROM withdrawals w,reported_crime r, users u WHERE (w.reported_id = r.reported_id AND r.user_id = u.user_id)',(err,rows,fields)=>{
         if(!err)
             res.send(rows);
         else
             console.log(err);
     })
 });
+
+//<-----------------------------------------------Get withdrawals list by id-------------------------------------------------->
+app.get('/withdraw_crime/:id', (req, res) => {
+    sqlconnection.query('SELECT * FROM withdrawals WHERE reported_id = ?', [req.params.id], (err, rows, fields) => {
+        if (!err)
+            res.send(rows);
+        else
+            console.log(err);
+    })
+});
+
+
+// <-----------------------------------------------Get user_name from users by id------------------------------------------------!>
+app.delete('/delete/litigation/:id',(req, res) =>{
+    let auth = req.body.id;
+    sqlconnection.query('delete from reported_crime where reported_id = ?',[req.params.id],(rows,err,fields)=>{
+        if(!err)
+            console.log('Deleted Successfully');
+        else
+            console.log(err);
+    })
+})
+
+
+// <-----------------------------------------------Get user_name from users by id------------------------------------------------!>
+app.get('/user_name/:id',(req,res) => {
+    sqlconnection.query('Select * from users where user_id = ?',[req.params.id],(rows,err,fields) =>{
+        if(!err)
+        {
+            res.send(rows);
+        }
+        else
+        {
+            console.log(err);
+        }
+    })
+})
+
+
+
 

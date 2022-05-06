@@ -38,19 +38,15 @@
     function load()
     {
       App.getreported();
-//       $('#trigger').click(function () {
-// 	$('#changedata').modal({show : true});
-// });
     }
     function authenticate()
     {
       App.postauthenticate();
-      alert("Submitted");
     }
-    function display(i)
-        {
-          App.getpatreported(i);
-        }
+    function rep_display(i)
+    {
+      App.getpatreported(i);
+    }
        
 
   </script>
@@ -61,7 +57,7 @@
     <div class="sidebar">
         <h2>OFFENSES</h2>
         <ul>
-            <li><a href="/HTML/index.html"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="/HTML/PoliceHomepage.html"><i class="fas fa-home"></i>Home</a></li>
             <li><a href="/HTML/PoliceProfile.html"><i class="fas fa-user"></i>Profile</a></li>
             <li><a href="/HTML/PoliceAuthenticate.html"><i class="fas fa-balance-scale"></i>Reported Crimes</a></li>
             <li><a href="/HTML/PoliceWithdraw.html"><i class="fas fa-balance-scale"></i>Withdraw Crimes</a></li>
@@ -106,7 +102,7 @@
               <input class="modal-content" style="width: 200px; float:left; border: 0px;"type="text" id="rep_des" readonly></input><br><br>
               <label class="modal-content" style="width: 200px; float:left; border: 0px;">Reported Place</label>
               <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="rep_place" readonly></input><br><br>
-              <label class="modal-content" style="width: 200px; float:left; border: 0px;">Date of Crime</label>
+              <label class="modal-content" style="width: 200px; float:left; border: 0px;">Document proof</label>
               <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="doc" readonly></input><br><br>
             </form>
         </div>
@@ -128,6 +124,7 @@
             <th scope="col">Crime id</th>
             <th scope="col">User id</th>
             <th scope="col">User name</th>
+            <th>Authenticate</th>
           </tr></thead>
           <tbody id="tab_Content">
           </tbody>
