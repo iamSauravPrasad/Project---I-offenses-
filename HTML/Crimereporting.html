@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Crime reporting form</title>
+    
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles.css"   > 
+        <style>
+        .header{
+
+            font-size: 17px;
+            font-family: candara;
+            display: flex-end;
+        }
+        .mainform{
+            margin: 50px 230px 50px 230px;
+            padding: 2rem;
+            border: 1px solid rgb(224,224,224) ;
+            border-radius: 15px;
+            box-shadow: 10px 7px 0 rgb(224,224,224);
+            background-color: white;
+            display: flex;
+            }
+        
+            input[type=text], select, textarea {
+                display: flex;
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                margin-top: 6px;
+                margin-bottom: 16px;
+                resize: vertical;
+            }
+            @media screen and (max-width: 680px) {
+                .header, .mainform, input[type=submit] {
+                  margin: 0px 0px 0px 0px;
+                }
+              }
+        
+              </style>
+              
+<script src="../Routes/ApiUsed.js"></script>
+<script>
+    function reporting()
+    {
+        App.postreported();
+    }
+</script>
+    </head>
+    <body style="background-color:   #8a12cf ;">
+        <div class= "mainform">
+          <form >
+            <div class = "header">
+                <h1><b>Crime reporting form</b></h1>
+                    <p>Please send us details about the incident you would like to report. Our Complaint Center will analyze your complaint and take the appropriate measures. 
+                    </p>
+                      <hr/>
+                </div>
+                  <div class="form-group">
+                    <label for="user_id"></label>
+                    <input type="text" id="user_id" class="form-control" placeholder="Enter user_id" name = "user_id" required >
+                    <label for="area_pin"> <b>Area PIN: </b> </label>
+                    <input type="text" id="area_pin" class="form-control" placeholder="Enter Area Pin" name = "area_pin" required >
+                  </div>
+                  <label for="repoted_place"><b>Area Name:</b></label>
+                  <input type="text" id="repoted_place" class="form-control" placeholder="Enter Area Name" name = "repoted_place" required>
+
+                  <div id="formsection">
+                    <label><b>What is the category of crime you are reporting?</b></label>
+                    <p><input type="checkbox" name="reported_ctype" value="Theft" >Theft</p>
+                    <p><input type="checkbox" name="reported_ctype" value="Murder">Murder</p>
+                    <p><input type="checkbox" name="reported_ctype" value="Robbery">Robbery</p>
+                    <p><input type="checkbox" name="reported_ctype" value="Kidnapping">Kidnapping</p>
+                  
+                    <p><input type="checkbox" name="reported_ctype" value="Sexual Assault">Sexual Assault</p>
+                    <p><input type="checkbox" name="reported_ctype" value="Arms trafficking">Arms trafficking</p>
+                    <p><input type="checkbox" name="reported_ctype" value="Illegal drug trade">Illegal drug trade</p>
+                    <p><input type="checkbox" name="reported_ctype" value="Others">Others</p>
+                  </div>
+                  <label for="reprorted_desc"><b>Complaint Details:</b></label>
+                  <textarea id="reprorted_desc" name="reprorted_desc" placeholder="Enter your complaint details......." style="height:200px" required></textarea>
+                  <button type="submit" class="btn btn-outline-primary" onclick="reporting();">Submit</button>
+                  <!-- <button type="submit" class="btn btn-outline-primary" onclick="withdrawreport();">Submit</button> -->
+        </form>
+    </div>
+    
+</body>
+
+</html>

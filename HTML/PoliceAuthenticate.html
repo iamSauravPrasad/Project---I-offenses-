@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>crime-Authentication</title>
-	<link rel="stylesheet" href="/css/policeAuthenticatestyles.css">
+	<link rel="stylesheet" href="../css/policeAuthenticatestyles.css">
 	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
   <!-- <script src="../js/test.js"></script> -->
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
@@ -47,38 +47,18 @@
     {
       App.getpatreported(i);
     }
-       
-
+    
+    
   </script>
 </head>
 <body onload="this.load();">
-
-<div class="wrapper">
-    <div class="sidebar">
-        <h2>OFFENSES</h2>
-        <ul>
-            <li><a href="/HTML/PoliceHomepage.html"><i class="fas fa-home"></i>Home</a></li>
-            <li><a href="/HTML/PoliceProfile.html"><i class="fas fa-user"></i>Profile</a></li>
-            <li><a href="/HTML/PoliceAuthenticate.html"><i class="fas fa-balance-scale"></i>Reported Crimes</a></li>
-            <li><a href="/HTML/PoliceWithdraw.html"><i class="fas fa-balance-scale"></i>Withdraw Crimes</a></li>
-            <!-- <li><a href="#"><i class="fas fa-blog"></i>Blogs</a></li>
-            <li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li> -->
-            <li><a href="#"><i class="fas fa-map-pin"></i>Map</a></li>
-        </ul> 
-        <!-- <div class="social_media">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-        </div> -->
-    </div>
-
-
+<my-header></my-header>
      <!--New Modal-->
   <div class="modal fade" id="changedata" tabindex="-1" role="dialog" data-backdrop='static' aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Authenticate Record</h5><br>
+          <h5 class="modal-title" id="exampleModalLabel" >Authenticate Record</h5><br>
           
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -103,12 +83,12 @@
               <label class="modal-content" style="width: 200px; float:left; border: 0px;">Reported Place</label>
               <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="rep_place" readonly></input><br><br>
               <label class="modal-content" style="width: 200px; float:left; border: 0px;">Document proof</label>
-              <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="doc" readonly></input><br><br>
+              <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="doc" placeholder="document"></input><br><br>
             </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Reject</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="authenticate();">Authenticate</button>
+          <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="authenticate();">Authenticate</button>
         </div>
       </div>
     </div>
@@ -116,7 +96,7 @@
 
 
     <div class="main_content">
-        <div class="header" style="font-size:larger;">Authenticate Reported Crimes</div>  
+        <div class="header" style="font-size:larger; text-align: center;"><h1>Authenticate Reported Crimes</h1></div>  
         <div class="info">
         <table style="border:2px !important; column-gap:4cm !important;" class="table">
           <thead class="thead-dark">
@@ -145,5 +125,6 @@
 
  <script src="../Routes/ApiUsed.js"></script>
 
+ <script type="module" src="../Routes/navbar.js"></script>
 </body>
 </html>

@@ -3,6 +3,7 @@ App = {
         const api_url ="http://localhost:5000/reported_crime";
         // console.log(api_url);
         // let usr_name = sessionStorage.getItem('usrname');
+        tab_Content.innerHTML = " ";
         data =this.getapi(api_url).then(data=>{
             
             for(var i = 0; i <= data.length; i++) {
@@ -48,26 +49,50 @@ App = {
                     "crime_place": document.getElementById("rep_place").value,
                     "document": document.getElementById("doc").value,
                     "curr_status": "Authenticated",
-                    "police_id": sessionStorage.getItem('usrname')
+                    "police_id": sessionStorage.getItem('usrname'),
+                    "reported_id": document.getElementById('rep_idn').value
                 }
         });
         xhr.open("POST", "http://localhost:5000/Authenticateinsert", true);        
         xhr.setRequestHeader('Content-Type', 'application/json');
         console.log(dta);
         xhr.send(dta);
-    
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+               App.getreported();
+            }
+          };
     },
 
 
+
+    // login: function(){
+    //     console.log('yes');
+    //     var usr_id = parseInt(document.getElementById("uid").value);
+    //     var usr_passw = document.getElementById("upassw").value ;
+    //     const api_url = "http://localhost:5000/suser/"+usr_id+"/"+usr_passw;
+    //     console.log('calling url');
+    //     // this.getapi(api_url);
+    //     data=this.getapi(api_url).then(data =>{
+    //         console.log(session.usr_id);
+    //     });
+    // },
+
+
+
+
+
     login: function(){
-        var usr_id = document.getElementById("uid").value;
+        var usr_id = (document.getElementById("uid").value);
         var usr_passw = document.getElementById("upassw").value ;
         const api_url = "http://localhost:5000/suser/"+usr_id;
-        data=this.getapi(api_url).then(data =>{
+        data = this.getapi(api_url).then(data=>{
             if(data.length > 0)
             {
                 if(data[0].login_password==usr_passw)
                 {
+                    const sess = "http://localhost:5000/reqsession";
+                    getapi(sess);
                     sessionStorage.setItem('usrname',data[0].login_id)
                     if(data[0].user_type == "police" || data[0].user_type == "Police" || data[0].user_type == "POLICE")
                     {
@@ -89,7 +114,7 @@ App = {
             else
             {
                 alert("User Dosen't Exist !!");
-            }       
+            }
         })
     },
 
@@ -113,7 +138,6 @@ App = {
         let usr_id =sessionStorage.getItem('usrname');
         const api_url ="http://localhost:5000/withdraw_crime";
         data =this.getapi(api_url).then(data=>{
-            console.log(data);
             for(var i = 0; i <= data.length; i++) {
                 var a = "<tr  scope='row'><td>"+data[i].request_id+"</td><td>"+data[i].reported_id+"</td><td>"+data[i].f_name+"</td><td><span class='material-icons' data-target='#changedata' onclick='with_display("+data[i].request_id+")'>unfold_more</span></td></tr>";
                 tab_Content.innerHTML += a;
@@ -138,9 +162,20 @@ App = {
         });
     },
 
-    // deleterequest: function(){
-    //     const api_url = "http://loclahost:5000/delete/litigation/"+id;
-    //     data
+    deleterequest: function(){
+        var xhr = new XMLHttpRequest();
+        var data = JSON.stringify({
+            "reported": 
+                {
+                    "user_id": document.getElementById("with_rep_id").value
+                }
+        });
+        xhr.open("DELETE", "http://localhost:5000/delete/reported_crime", true);        
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        console.log(data);
+        xhr.send(data);
+
+    },
 
 
     getapi:async function(url) {

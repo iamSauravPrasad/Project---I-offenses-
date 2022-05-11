@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Report Crime</title>
+	<link rel="stylesheet" href="../css/policeAuthenticatestyles.css">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <!-- <script src="../js/test.js"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+  </script> -->
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+
+
+<link href="../css/bootstrap.css" rel="stylesheet">
+
+<link href="../css/style.css" rel="stylesheet">
+
+<link href="../css/nav.css" rel="stylesheet">
+
+<link href="../css/responsive.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <style>
+    .modal-backdrop {display: none;}
+    table {
+      border:2px !important; 
+      column-gap:4cm !important;
+    }
+  </style>
+  <script>window.__theme = 'bs4';</script>
+  <script>
+    function load()
+    {
+      App.getpatusrep();
+    }
+    function authenticate()
+    {
+      App.postauthenticate();
+    }
+    function rep_display(i)
+    {
+      App.getpatreport(i);
+    }
+       
+
+  </script>
+</head>
+<body onload="this.load();">
+
+<div class="wrapper">
+    <div class="sidebar">
+        <h2>OFFENSES</h2>
+        <ul>
+            <li><a href="/HTML/UserHomepage.html"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="/HTML/PoliceProfile.html"><i class="fas fa-user"></i>Profile</a></li>
+            <li><a href="/HTML/ReportedCrime.html"><i class="fas fa-balance-scale"></i>Reported Crimes</a></li>
+            
+            <!-- <li><a href="#"><i class="fas fa-blog"></i>Blogs</a></li>
+            <li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li> -->
+            <li><a href="#"><i class="fas fa-map-pin"></i>Map</a></li>
+        </ul> 
+        <!-- <div class="social_media">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div> -->
+    </div>
+
+
+     <!--New Modal-->
+  <div class="modal fade" id="changedata" tabindex="-1" role="dialog" data-backdrop='static' aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Reported crime details</h5><br>
+          
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="changeRecordForm">
+            <lable class="modal-content" style="width: 200px; float:left; border: 0px;">Reported ID</lable>
+            <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="rep_idn" readonly></input><br><br>
+            <lable class="modal-content" style="width: 200px; float:left; border: 0px;">User ID</lable>
+            <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="usr_id" readonly></input><br><br>
+            <lable class="modal-content" style="width: 200px; float:left; border: 0px;">Area PIN</lable>
+            <input class="modal-content" style="width: 200px; float:left; border: 0px;"type="text" id="area_pin" readonly></input><br><br>
+            <label class="modal-content" style="width: 200px; float:left; border: 0px;">Reported Time</label>
+            <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="rep_time" readonly></input><br><br>
+            <lable class="modal-content" style="width: 200px; float:left; border: 0px;">Reported Date</lable>
+            <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="rep_date" readonly></input><br><br>
+            <lable class="modal-content" style="width: 200px; float:left; border: 0px;">Reported Type</lable>
+            <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="rep_type" readonly></input><br><br>
+            <lable class="modal-content" style="width: 200px; float:left; border: 0px;">Reported Description</lable>
+            <input class="modal-content" style="width: 200px; float:left; border: 0px;"type="text" id="rep_des" readonly></input><br><br>
+            <label class="modal-content" style="width: 200px; float:left; border: 0px;">Reported Place</label>
+            <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="rep_place" readonly></input><br><br>
+            <label class="modal-content" style="width: 200px; float:left; border: 0px;">Document proof</label>
+            <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="doc" readonly></input><br><br>
+          </form>
+      </div>
+        <div class="modal-footer">
+          <a href="Reportwithdraw.html"><input type="button" class="btn btn-secondary" data-dismiss="modal" >  withdraw</button></a>
+   
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="main_content">
+        <div class="header" style="font-size:larger;">Reported Crimes</div>  
+        <div class="info">
+        <table style="border:2px !important; column-gap:4cm !important;" class="table">
+          <thead class="thead-dark">
+          <tr>
+            <th scope="col">Crime id</th>
+            <th scope="col">Reported date</th>
+            <th scope="col">Place</th>
+            <th>Report details</th>
+          </tr></thead>
+          <tbody id="tab_Content">
+          </tbody>
+        </table>  
+        </div>
+    </div>
+</div>
+
+<div class="d-grid gap-2 col-6 mx-auto">
+ <a href="Crimereporting.html"> <button class="btn btn-primary" type="button">Report a crime</button></a>
+  
+</div>
+
+
+
+  
+
+
+
+
+
+<script src="../js/popper.min.js"></script>
+
+<script src="../js/jquery-ui.js"></script>
+
+<script src="../js/bootstrap.min.js"></script>
+
+<script src="../js/script.js"></script>
+
+ <script src="../Routes/ApiUsed.js"></script>
+
+</body>
+</html>

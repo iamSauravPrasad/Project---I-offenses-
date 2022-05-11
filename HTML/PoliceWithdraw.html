@@ -41,8 +41,7 @@
     }
     function authenticate()
     {
-      // App.postauthenticate();
-      // alert("Submitted");
+      App.deleterequest();
     }
     function with_display(i)
     {
@@ -53,26 +52,7 @@
   </script>
 </head>
 <body onload="this.load()">
-
-<div class="wrapper">
-    <div class="sidebar">
-        <h2>OFFENSES</h2>
-        <ul>
-            <li><a href="/HTML/PoliceHomepage.html"><i class="fas fa-home"></i>Home</a></li>
-            <li><a href="/HTML/PoliceProfile.html"><i class="fas fa-user"></i>Profile</a></li>
-            <li><a href="/HTML/PoliceAuthenticate.html"><i class="fas fa-balance-scale"></i>Reported Crimes</a></li>
-            <li><a href="/HTML/PoliceWithdraw.html"><i class="fas fa-balance-scale"></i>Withdraw Crimes</a></li>
-            <!-- <li><a href="#"><i class="fas fa-blog"></i>Blogs</a></li>
-            <li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li> -->
-            <li><a href="#"><i class="fas fa-map-pin"></i>Map</a></li>
-        </ul> 
-        <!-- <div class="social_media">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-        </div> -->
-    </div>
-
+  <my-header></my-header>
 
      <!--New Modal-->
   <div class="modal fade" id="changedata" tabindex="-1" role="dialog" data-backdrop='static' aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -101,7 +81,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Reject</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="authenticate();">Authenticate</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="authenticate();">Accept</button>
         </div>
       </div>
     </div>
@@ -109,7 +89,7 @@
 
 
     <div class="main_content">
-        <div class="header" style="font-size:larger;">Authenticate Withdraw Requests</div>  
+      <div class="header" style="font-size:larger; text-align: center;"><h1>Authenticate Withdraw Crimes</h1></div> 
         <div class="info">
         <table style="border:2px !important; column-gap:4cm !important;" class="table">
           <thead class="thead-dark">
@@ -136,6 +116,8 @@
 <script src="../js/script.js"></script>
 
  <script src="../Routes/ApiUsed.js"></script>
+
+ <script type="module" src="../Routes/navbar.js"></script>
 
 </body>
 </html>
