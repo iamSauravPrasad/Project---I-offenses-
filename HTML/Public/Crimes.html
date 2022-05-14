@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>crime-Authentication</title>
+	<link rel="stylesheet" href="../../css/policeAuthenticatestyles.css">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <!-- <script src="../js/test.js"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+  </script> -->
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+
+
+<link href="../../css/bootstrap.css" rel="stylesheet">
+
+<link href="../../css/style.css" rel="stylesheet">
+
+<link href="../../css/nav.css" rel="stylesheet">
+
+<link href="../../css/responsive.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <style>
+    .modal-backdrop {display: none;}
+    table {
+      border:2px !important; 
+      column-gap:4cm !important;
+    }
+  </style>
+  <script>window.__theme = 'bs4';</script>
+    <script>
+        function navselect() {
+            var ret = App.checklog();
+            if (ret == true) {
+                pnot.innerHTML = "<ploggedin-header></ploggedin-header>";
+            }
+            else {
+                document.activeElement
+                pnot.innerHTML = "<pnotloggedin-header></pnotloggedin-header>";
+            }
+        }
+        function load() {
+            this.navselect();
+        }
+    </script>
+</head>
+
+<body onload="this.load();">
+    <span id="pnot"></span>
+    <div class="main_content">
+        <div class="header" style="font-size:larger;">
+            <h1>सत्यमेव जयते....</h1>
+        </div>
+    </div>
+    <div>
+        <div class='tableauPlaceholder' id='viz1652456269733' style='position: relative'>
+            <noscript>
+                <a href='#'>
+                    <img alt='Dashboard 1 '
+                        src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;8F&#47;8FRHHX56Z&#47;1_rss.png'
+                        style='border: none' />
+                </a>
+            </noscript>
+            <object class='tableauViz' style='display:none;'>
+                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                <param name='embed_code_version' value='3' />
+                <param name='path' value='shared&#47;8FRHHX56Z' />
+                <param name='toolbar' value='yes' />
+                <param name='static_image'
+                    value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;8F&#47;8FRHHX56Z&#47;1.png' />
+                <param name='animate_transition' value='yes' />
+                <param name='display_static_image' value='yes' />
+                <param name='display_spinner' value='yes' />
+                <param name='display_overlay' value='yes' />
+                <param name='display_count' value='yes' />
+                <param name='language' value='en-GB' />
+                <param name='filter' value='publish=yes' />
+            </object>
+        </div>
+        <script type='text/javascript'>
+            var divElement = document.getElementById('viz1652456269733');
+            var vizElement = divElement.getElementsByTagName('object')[0];
+            if (divElement.offsetWidth > 800) {
+                vizElement.style.minWidth = '420px';
+                vizElement.style.maxWidth = '650px';
+                vizElement.style.width = '100%';
+                vizElement.style.minHeight = '587px';
+                vizElement.style.maxHeight = '887px';
+                vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
+            } else if (divElement.offsetWidth > 500) {
+                vizElement.style.minWidth = '420px';
+                vizElement.style.maxWidth = '650px';
+                vizElement.style.width = '100%';
+                vizElement.style.minHeight = '587px';
+                vizElement.style.maxHeight = '887px';
+                vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
+            } else {
+                vizElement.style.width = '100%';
+                vizElement.style.height = '727px';
+            }
+            var scriptElement = document.createElement('script');
+            scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+            vizElement.parentNode.insertBefore(scriptElement, vizElement);
+        </script>
+    </div>
+    <script src="../../js/popper.min.js"></script>
+
+    <script src="../../js/jquery-ui.js"></script>
+    
+    <script src="../../js/bootstrap.min.js"></script>
+    
+    <script src="../../js/script.js"></script>
+    
+    <script src="../../Routes/ApiUsed.js"></script>
+     
+    <script type="module" src="../../Routes/navbar.js"></script>
+</body>
+</html>

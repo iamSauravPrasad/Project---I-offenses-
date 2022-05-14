@@ -23,33 +23,6 @@ app.use(session({
     saveUninitialized: true
 }))
 
-// const oneDay = 1000 * 60 * 60 * 24;
-// app.use(
-//     session({
-//         key: "userId",
-//         secret: "this is a secret",
-//         resave: false,
-//         saveUninitialized: false,
-//         cookie: {
-//             maxAge: oneDay,
-//         },
-//     })
-// );
-
-
-// app.use(
-//     session({
-//         name:'SessionCookie',
-//         genid: function(req) {
-//             console.log.log('session id generated');
-//             return genuuid();
-//         },
-//         secret: "Shsh!Secret!",
-//         resave: false,
-//         saveUninitialized: false,
-//         cookie: {secure: false, maxAge: oneDay}
-//         })
-// );
 
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server Running on port: http://localhost:${PORT}`));
@@ -107,6 +80,23 @@ app.post('/authenticateinsert', (req, res) => {
 });
 
 
+//<-----------------------------------------------Add a record to criminal-------------------------------------------------->
+app.post('/postinsert', (req, res) => {
+    //    console.log(req.body);
+        let add = req.body.add;
+        console.log(add);
+        sqlconnection.query("insert into criminal(crime_id,name,dob,address) values('"+add.crime_id+"','"+add.name+"','"+add.dob+"','"+add.address+"');", (err, rows, fields) => {
+            if (!err)
+            {
+                console.log("Submitted");
+                res.send('Inserted successfully');
+            }
+            else
+                console.log(err);
+        })
+    });
+
+
 
 // <-----------------------------------------------search user by id from login ------------------------------------------------!>
 // app.get('/suser/:id/:pass', (req, res) => {
@@ -148,7 +138,7 @@ app.post('/authenticateinsert', (req, res) => {
 
 
 
-// <-----------------------------------------------search user by id from login ------------------------------------------------!>
+// <-----------------------------------------------search user by id for login ------------------------------------------------!>
 app.get('/suser/:id', (req, res) => {
     console.log('console main');
     sqlconnection.query('SELECT * FROM login WHERE login_id =?', [req.params.id], (err, rows, fields) => {
@@ -160,7 +150,7 @@ app.get('/suser/:id', (req, res) => {
 });
 
 // <------------------------------------------------create session------------------------------------------------------------->
-app.post('/reqsession/:id', (req, res) => {
+app.post('/createsession/:id', (req, res) => {
     req.session.user_id = req.params.id;
     req.session.login = true;
     req.session.save();
@@ -168,8 +158,33 @@ app.post('/reqsession/:id', (req, res) => {
     res.send('session created');
 });
 
+// <------------------------------------------------get session user id------------------------------------------------------------->
+app.get('/getsessionusrid', (req, res) =>{
+    var uid = req.session.user_id;
+    res.send(uid);
+});
 
-// <-----------------------------------------------Get all the requestx`1 request list for the logged in user------------------------------------------------!>
+// <------------------------------------------------get session login(true/false)------------------------------------------------------------->
+app.get('/getsessionlogin', (req, res) =>{
+    var login = req.session.login;
+    res.send(login);
+});
+
+
+exports.getsessionlogin = (req, res) => {
+    var login = req.session.login;
+    res.send(login);
+};
+
+
+// <------------------------------------------------destroy session------------------------------------------------------------->
+app.post('/logout', (req, res) => {
+    req.session.destroy();
+    res.send('session destroyed');
+});
+
+
+// <-----------------------------------------------Get all the withdraw request list for the logged in user------------------------------------------------!>
 // app.get('/withdraw_crime/:id',(req,res)=>{
 //     sqlconnection.query('SELECT * FROM reported_crime WHERE user_id = ?;)',[req.params.id],(err,rows,fields)=>{
 //         if(!err)
@@ -229,6 +244,96 @@ app.get('/user_name/:id', (req, res) => {
 })
 
 
+// <-----------------------------------------------Get user_name from users by id------------------------------------------------!>
+app.delete('/delete/litigation/:id',(req, res) =>{
+    let auth = req.body.id;
+    sqlconnection.query('delete from reported_crime where reported_id = ?',[req.params.id],(rows,err,fields)=>{
+        if(!err)
+            console.log('Deleted Successfully');
+        else
+            console.log(err);
+    })
+})
+
+
+
+// <-----------------------------------------------Get criminals details from criminlas------------------------------------------------!>
+app.get('/criminals', (req, res) => {
+    // res.send('Welcome To CRMS');
+    let sql = "SELECT * FROM criminal";
+    let query = sqlconnection.query(sql, (err, rows) => {
+        if (err) throw err;
+        res.send(rows);
+        });
+    });
+
+// <-----------------------------------------------Get criminals details from criminlas by id------------------------------------------------!>
+app.get('/criminals/:id', (req, res) => {
+    // res.send('Welcome To CRMS');
+    // let sql = "SELECT * FROM criminal";
+    let query = sqlconnection.query("select * from criminal where id=?",[req.params.id], (err, rows) => {
+        if (err) throw err;
+        res.send(rows);
+        });
+    });
+    
+
+
+
+// <-----------------------------------------------Update criminals details from criminlas------------------------------------------------!>
+app.post('/addcriminal', (req, res) => {
+          console.log(req.body);
+           let add = req.body.add;
+           console.log(add);
+           sqlconnection.query("update criminal set name = '"+add.name+"',dob="+add.dob+",address='"+add.address+"' where crime_id = "+add.crime_id+";", (err, rows, fields) => {
+               if (!err)
+               {
+                    console.log("Submitted");
+                    res.send('Inserted successfully');
+                }
+                else
+                    console.log(err);
+           })
+        });
+
+// <-----------------------------------------------Get case details from litigation------------------------------------------------!>
+app.get('/litigations', (req, res) => {
+    // res.send('Welcome To CRMS');
+    let sql = "SELECT * FROM litigation";
+    let query = sqlconnection.query(sql, (err, rows) => {
+        if (err) throw err;
+        res.send(rows);
+        });
+    });
+
+// <-----------------------------------------------Get case details from litigation by id------------------------------------------------!>
+app.get('/litigations/:id', (req, res) => {
+    // res.send('Welcome To CRMS');
+    // let sql = "SELECT * FROM criminal";
+    let query = sqlconnection.query("select * from litigation where crime_id=?",[req.params.id], (err, rows) => {
+        if (err) throw err;
+        res.send(rows);
+        });
+    });
+
+// <-----------------------------------------------Update case details from litigation------------------------------------------------!>
+app.post('/updatecase', (req, res) => {
+        console.log(req.body);
+         let update = req.body.update;
+         console.log(update);
+         sqlconnection.query("update litigation set crime_type = '"+add.crime_type+"',crime_place='"+add.crime_place+"',crime_date='"+add.crime_date+"',crime_time='"+add.crime_time+"',crime_description='"+add.crime_description+"',area_pin='"+add.area_pin+"',police_id='"+add.police_id+"',curr_status='"+add.curr_status+"' where crime_id = "+add.crime_id+";", (err, rows, fields) => {
+             if (!err)
+             {
+                  console.log("Submitted");
+                  res.send('Inserted successfully');
+              }
+              else
+                  console.log(err);
+         })
+      });
+
+
+
 // <---------------------------------------------------------Upload pics -----------------------------------------------------!>
 app.post('/upload_pic', (req, res) => {
     const formidable = require('formidable');
@@ -259,3 +364,55 @@ app.post('/upload_pic', (req, res) => {
 
 
 
+
+// AMINA
+
+
+//<-----------------------------------------------Add a withdraw request-------------------------------------------------->
+app.post('/withdrawinsert', (req, res) => {
+    //    console.log(req.body);
+        let withdraw = req.body.withdraw;
+        console.log(withdraw);
+        sqlconnection.query("insert into withdrawals(reported_id,request_reason) values('"+withdraw.reported_id+"','"+withdraw.request_reason+"');", (err, rows, fields) => {
+            if (!err)
+            {
+                console.log("Submitted");
+                res.send("Inserted successfully");
+            }
+            else
+                console.log(err);
+        })
+    });
+
+
+ // <-----------------------------------------------add by reportid and user id ------------------------------------------------!>
+
+ app.post('/postreported', (req, res) => {
+    //    console.log(req.body);
+        let repinsert = req.body.repinsert;
+        console.log(repinsert);
+        sqlconnection.query("insert into reported_crime(user_id,area_pin,reported_place,reported_ctype,reprorted_desc,reported_date,reported_time) values('"+repinsert.user_id+"','"+repinsert.area_pin+"','"+repinsert.reported_place+"','"+repinsert.reported_ctype+"','"+repinsert.reprorted_desc+"','"+repinsert.reported_date+"','"+repinsert.reported_time+"');", (err, rows, fields) => {
+            if (!err)
+            {
+                console.log("Submitted");
+                res.send('Inserted successfully');
+            }
+            else
+                console.log(err);
+        })
+    });
+
+
+
+    //<-----------------------------------------------Get all the reported crimes list-------------------------------------------------->
+app.get('/reported_crime_user/:id', (req, res) => {
+    sqlconnection.query('SELECT * FROM reported_crime where user_id = ?',[req.params.id], (err, rows, fields) => {
+        if (!err)
+            res.send(rows);
+        else
+            console.log(err);
+    })
+});
+
+
+    

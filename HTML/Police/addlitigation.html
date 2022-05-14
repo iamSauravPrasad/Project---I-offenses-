@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            function auth()
+       {
+         App.authenticateinsert();
+       }
+        </script>
+    </head>
+    <body>
+
+<div class="modal fade" id="updatecriminal" tabindex="-1" role="dialog" data-backdrop='static' aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Case</h5><br>
+          
+        
+        </div>
+        <div class="modal-body">
+            <lable class="modal-content" style="width: 200px; float:left; border: 0px;" for="crime_id">Crime ID</lable>
+            <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="number" id="crime_id" placeholder="Crime id" name="crime_id"></input><br><br>
+            <lable class="modal-content" style="width: 200px; float:left; border: 0px;" for="crime_type">Crime Type</lable>
+            <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="crime_type" placeholder="crime_type" name="crime_type"></input><br><br>
+            <lable class="modal-content" style="width: 200px; float:left; border: 0px;" for="crime_place">Crime Place</lable>
+            <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="crime_place" placeholder="crime_place" name="crime_place"></input><br><br>
+            <lable class="modal-content" style="width: 200px; float:left; border: 0px;" for="crime_date">Crime Date</lable>
+            <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="crime_date" placeholder="crime_date" name="crime_date"></input><br><br>
+            <lable class="modal-content" style="width: 200px; float:left; border: 0px;" for="crime_time">Crime Time</lable>
+            <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="time" id="crime_time" placeholder="crime_time" name="crime_time"></input><br><br>
+            <lable class="modal-content" style="width: 200px; float:left; border: 0px;" for="area_pin">Area Pin</lable>
+            <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="area_pin" placeholder="area_pin" name="area_pin"></input><br><br>
+            <lable class="modal-content" style="width: 200px; float:left; border: 0px;" for="police_id">Police Id</lable>
+            <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="police_id" placeholder="police_id" name="police_id"></input><br><br>
+            <lable class="modal-content" style="width: 200px; float:left; border: 0px;" for="curr_status">Current Staus</lable>
+            <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="curr_status" placeholder="curr_status" name="curr_status"></input><br><br>
+      
+    </form>
+         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" onclick="auth();">ADD</button>
+          <!--<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="authenticate();">Authenticate</button>-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../js/popper.min.js"></script>
+
+  <script src="../../js/jquery-ui.js"></script>
+  
+  <script src="../../js/bootstrap.min.js"></script>
+  
+  <script src="../../js/script.js"></script>
+  
+   <script src="../../Routes/ApiUsed.js"></script>
+   
+   <script type="module" src="../../Routes/navbar.js"></script>
+    </body>
+</html>

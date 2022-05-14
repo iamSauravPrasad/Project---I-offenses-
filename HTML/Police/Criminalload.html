@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>crime-Authentication</title>
+	<link rel="stylesheet" href="../../css/policeAuthenticatestyles.css">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <!-- <script src="../js/test.js"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+  </script> -->
+
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+
+
+<link href="../../css/bootstrap.css" rel="stylesheet">
+
+<link href="../../css/style.css" rel="stylesheet">
+
+<link href="../../css/nav.css" rel="stylesheet">
+
+<link href="../../css/responsive.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <style>
+    .modal-backdrop {display: none;}
+    table {
+      border:2px !important; 
+      column-gap:4cm !important;
+    }
+  </style>
+  <script>window.__theme = 'bs4';</script>
+  <script>
+        function load()
+        {
+            App.getcriminals();
+        }
+      function add()
+       {
+       App.postadd();
+       } 
+       function criminal_display(i)
+       {
+         App.getaddcriminals(i);
+       }
+       
+    </script>
+</head>
+<body onload="this.load();">
+  <div class="wrapper">
+    <div class="sidebar">
+      <h2>OFFENSES</h2>
+      <ul>
+        <li><a href="../Police/PoliceHomepage.html"><i class="fas fa-home"></i>Home</a></li>
+        <li><a href="../Police/PoliceProfile.html"><i class="fas fa-user"></i>Profile</a></li>
+        <li><a href="../Police/PoliceAuthenticate.html"><i class="fas fa-balance-scale"></i>Reported Crimes</a></li>
+        <li><a href="../Police/PoliceWithdraw.html"><i class="fas fa-balance-scale"></i>Withdraw Crimes</a></li>
+        <li><a href="../Police/litigation.html"><i class="fas fa-balance-scale"></i>Litigation</a></li>
+        <li><a href="../Police/Criminalload.html"><i class="fas fa-balance-scale"></i>Criminals</a></li>
+        <!-- <li><a href="#"><i class="fas fa-blog"></i>Blogs</a></li>
+          <li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li> -->
+        <li><a href="#"><i class="fas fa-map-pin"></i>Map</a></li>
+      </ul>
+      <!-- <div class="social_media">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div> -->
+    </div>
+           <!--update record--->
+        <div class="modal fade" id="addcriminal" tabindex="-1" role="dialog" data-backdrop='static' aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Update Criminal</h5><br>
+                  
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addrecord">
+              <lable class="modal-content" style="width: 200px; float:left; border: 0px;" for="crime_id">Crime ID</lable>
+              <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="number" id="crime_id" placeholder="Crime id" name="crime_id"></input><br><br>
+              <lable class="modal-content" style="width: 200px; float:left; border: 0px;" for="name">Name</lable>
+              <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="name" placeholder="name" name="name"></input><br><br>
+              <lable class="modal-content" style="width: 200px; float:left; border: 0px;" for="dob">DOB</lable>
+              <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="dob" placeholder="DOB" name="DOB"></input><br><br>
+              <lable class="modal-content" style="width: 200px; float:left; border: 0px;" for="address">Address</lable>
+              <input class="modal-content" style="width: 200px; float:left; border: 0px;" type="text" id="address" placeholder="Address" name="address"></input><br><br>
+            </form>
+                 </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal" onclick="add();">Update</button>
+                  <!--<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="authenticate();">Authenticate</button>-->
+                </div>
+              </div>
+            </div>
+          </div>
+
+  
+
+        
+
+    <div class="main_content">
+        <div class="header" style="font-size:larger;">Criminals List</div>  
+        <div class="info">
+        <table style="border:2px !important; column-gap:4cm !important;" class="table">
+          <a href="../../HTML/Police/addcriminal.html" class="btn btn-sm btn-primary">Add Criminal</a><br/><br/>
+          <thead class="thead-dark">
+          <tr>
+            <th scoope = "col">Crime Id</th>
+            <th scoope = "col">Name</th>
+            <th scoope = "col">DOB</th>
+            <th scoope = "col">Address</th>
+            <th scoope = "col">Update</th>
+          </tr></thead>
+          <tbody id="tab_Content">
+          </tbody>
+        </table>  
+        </div>
+    </div>
+    
+
+    <script src="../../js/popper.min.js"></script>
+
+    <script src="../../js/jquery-ui.js"></script>
+    
+    <script src="../../js/bootstrap.min.js"></script>
+    
+    <script src="../../js/script.js"></script>
+    
+     <script src="../../Routes/ApiUsed.js"></script>
+     
+     <script type="module" src="../../Routes/navbar.js"></script>
+
+</body>
+</html>

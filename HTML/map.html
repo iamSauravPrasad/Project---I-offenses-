@@ -1,55 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>crime-Authentication</title>
+  <link rel="stylesheet" href="../../css/policeAuthenticatestyles.css">
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <!-- <script src="../js/test.js"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+  </script> -->
+
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
+
+
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+
+  <link href="../../css/style.css" rel="stylesheet">
+
+  <link href="../../css/nav.css" rel="stylesheet">
+
+  <link href="../../css/responsive.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <style>
+    .modal-backdrop {
+      display: none;
+    }
+
+    table {
+      border: 2px !important;
+      column-gap: 4cm !important;
+    }
+  </style>
+  <script>window.__theme = 'bs4';</script>
 </head>
+
 <body>
+  <div class="wrapper">
+    <div class="sidebar">
+      <h2>OFFENSES</h2>
+      <ul>
+        <li><a href="../../HTML/Homepage.html"><i class="fas fa-home"></i>Home</a></li>
+        <li><a href="../../HTML/Public/publicprofile.html"><i class="fas fa-user"></i>Profile</a></li>
+        <li><a href="../../HTML/Public/ReportedCrime.html"><i class="fas fa-balance-scale"></i>Reported Crimes</a></li>
+        <li><a href="../../HTML/Public/missing.html"><i class="fa fa-search"></i> Missing</a></li>
+
+        <!-- <li><a href="#"><i class="fas fa-blog"></i>Blogs</a></li>
+            <li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li> -->
+        <li><a href="#"><i class="fas fa-map-pin"></i>Map</a></li>
+      </ul>
+      <!-- <div class="social_media">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div> -->
+    </div>
     <!-- Map card -->
     <div class="card bg-gradient-primary">
-        <div class="card-header border-0">
-          <h3 class="card-title">
-            <i class="fas fa-map-marker-alt mr-1"></i>
-            Visitors
-          </h3>
-          <!-- card tools -->
-          <div class="card-tools">
-            <button type="button" class="btn btn-primary btn-sm daterange" title="Date range">
-              <i class="far fa-calendar-alt"></i>
-            </button>
-            <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
-              <i class="fas fa-minus"></i>
-            </button>
-          </div>
-          <!-- /.card-tools -->
+      <div class="card-header border-0">
+        <h3 class="card-title">
+          <i class="fas fa-map-marker-alt mr-1"></i>
+          Visitors
+        </h3>
+        <!-- card tools -->
+        <div class="card-tools">
+          <button type="button" class="btn btn-primary btn-sm daterange" title="Date range">
+            <i class="far fa-calendar-alt"></i>
+          </button>
+          <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse" title="Collapse">
+            <i class="fas fa-minus"></i>
+          </button>
         </div>
-        <div class="card-body">
-          <div id="world-map" style="height: 250px; width: 100%;"></div>
-        </div>
-        <!-- /.card-body-->
-        <div class="card-footer bg-transparent">
-          <div class="row">
-            <div class="col-4 text-center">
-              <div id="sparkline-1"></div>
-              <div class="text-white">Visitors</div>
-            </div>
-            <!-- ./col -->
-            <div class="col-4 text-center">
-              <div id="sparkline-2"></div>
-              <div class="text-white">Online</div>
-            </div>
-            <!-- ./col -->
-            <div class="col-4 text-center">
-              <div id="sparkline-3"></div>
-              <div class="text-white">Sales</div>
-            </div>
-            <!-- ./col -->
-          </div>
-          <!-- /.row -->
-        </div>
+        <!-- /.card-tools -->
       </div>
-      <!-- /.card -->
+      <div class="card-body">
+        <div id="world-map" style="height: 250px; width: 100%;"></div>
+      </div>
+      <!-- /.card-body-->
+      <div class="card-footer bg-transparent">
+        <div class="row">
+          <div class="col-4 text-center">
+            <div id="sparkline-1"></div>
+            <div class="text-white">Visitors</div>
+          </div>
+          <!-- ./col -->
+          <div class="col-4 text-center">
+            <div id="sparkline-2"></div>
+            <div class="text-white">Online</div>
+          </div>
+          <!-- ./col -->
+          <div class="col-4 text-center">
+            <div id="sparkline-3"></div>
+            <div class="text-white">Sales</div>
+          </div>
+          <!-- ./col -->
+        </div>
+        <!-- /.row -->
+      </div>
+    </div>
+    <!-- /.card -->
 </body>
+
 </html>
