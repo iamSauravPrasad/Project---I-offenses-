@@ -198,7 +198,7 @@ App = {
         data =this.getapi(api_url).then(data=>{
             console.log(data);
             for(var i = 0; i <= data.length; i++) {
-                var a = "<tr  scope='row'><td>"+data[i].crime_id+"</td><td>"+data[i].criminal_name+"</td><td>"+data[i].criminal_dob+"</td><td>"+data[i].criminal_address+"</td><td></td><td><span class='material-icons' data-target='#addcriminal' onclick='criminal_display("+data[i].id+")'>edit</span></td></tr>";
+                var a = "<tr  scope='row'><td>"+data[i].crime_id+"</td><td>"+data[i].criminal_name+"</td><td>"+data[i].criminal_dob+"</td><td>"+data[i].criminal_address+"</td><td></td><td><span class='material-icons' data-target='#addcriminal' onclick='criminal_display("+data[i].crime_id+")'>edit</span></td></tr>";
 
                 tab_Content.innerHTML += a;
             }
@@ -252,10 +252,10 @@ App = {
         data =this.getapi(api_url).then(data=>{
             console.log(data[0]);
                 x.elements[0].value = data[0].crime_id,
-                x.elements[1].value = data[0].name,
+                x.elements[1].value = data[0].criminal_name,
                 // x.elements[2].value = data[0].area_pin,
-                x.elements[2].value = data[0].dob,
-                x.elements[3].value = data[0].address,
+                x.elements[2].value = data[0].criminal_dob,
+                x.elements[3].value = data[0].criminal_address,
                 $("#addcriminal").modal()
         });
     },

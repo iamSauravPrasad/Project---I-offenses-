@@ -271,7 +271,7 @@ app.get('/criminals', (req, res) => {
 app.get('/criminals/:id', (req, res) => {
     // res.send('Welcome To CRMS');
     // let sql = "SELECT * FROM criminal";
-    let query = sqlconnection.query("select * from criminal where id=?",[req.params.id], (err, rows) => {
+    sqlconnection.query("select * from criminal where crimianl_id = ?;",[req.params.id], (err, rows) => {
         if (err) throw err;
         res.send(rows);
         });
