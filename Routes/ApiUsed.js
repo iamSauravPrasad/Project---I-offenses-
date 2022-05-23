@@ -342,7 +342,7 @@ App = {
         data =this.getapi(api_url).then(data=>{
             
             for(var i = 0; i <= data.length; i++) {
-                var a = "<tr  scope='row'><td>"+data[i].reported_id+"</td><td>"+ data[i].reported_ctype+"</td><td>"+data[i].reported_place+"</td><td><span class='material-icons' data-target='#changedata' onclick='rep_display("+data[i].user_id+")'>unfold_more</span></td></tr>";
+                var a = "<tr  scope='row'><td>"+data[i].reported_id+"</td><td>"+ data[i].reported_ctype+"</td><td>"+data[i].reported_place+"</td><td><span class='material-icons' data-target='#changedata' onclick='rep_display("+data[i].reported_id+")'>unfold_more</span></td></tr>";
                
                 tab_Content.innerHTML += a;
             }
