@@ -30,9 +30,9 @@ app.listen(PORT, () => console.log(`Server Running on port: http://localhost:${P
 
 var sqlconnection = mysql.createConnection(
     {
-        host: "localhost",
-        user: "root",
-        password: "123456",
+        host: "database-1.ceqalah1zabe.us-east-1.rds.amazonaws.com",
+        user: "admin",
+        password: "123456789",
         database: "offenses"
     });
 sqlconnection.connect((err) => {
