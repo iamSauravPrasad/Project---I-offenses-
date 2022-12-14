@@ -40,17 +40,15 @@ App = {
         var dta = JSON.stringify({
             "auth": 
                 {
-                    "user_id": document.getElementById("usr_id").value,
+                    "crime_id": document.getElementById("crime_id").value,
                     "area_pin": parseInt(document.getElementById("area_pin").value),
-                    "crime_time": document.getElementById("rep_time").value,
-                    "crime_date": document.getElementById("rep_date").value,
-                    "crime_type": document.getElementById("rep_type").value,
-                    "crime_description": document.getElementById("rep_des").value,
-                    "crime_place": document.getElementById("rep_place").value,
-                    "document": document.getElementById("doc").value,
-                    "curr_status": "Authenticated",
-                    "police_id": sessionStorage.getItem('usrname'),
-                    "reported_id": document.getElementById('rep_idn').value
+                    "crime_time": document.getElementById("crime_time").value,
+                    "crime_date": document.getElementById("crime_date").value,
+                    "crime_type": document.getElementById("crime_type").value,
+                    "crime_description": document.getElementById("crime_des").value,
+                    "crime_place": document.getElementById("crime_place").value,
+                    "curr_status": document.getElementById("curr_status").value,
+                    "police_id": document.getElementById("police_id").value,
                 }
         });
         xhr.open("POST", "http://44.213.54.18:5000/Authenticateinsert", true);        
@@ -180,6 +178,7 @@ App = {
         const api_url ="http://44.213.54.18:5000/litigations";
         // console.log(api_url);
         // let usr_name = sessionStorage.getItem('usrname');
+        tab_Content.innerHTML = "";
         data =this.getapi(api_url).then(data=>{
             console.log(data);
             for(var i = 0; i <= data.length; i++) {
@@ -316,7 +315,7 @@ App = {
                     "crime_place": (document.getElementById("crime_place").value),
                     "crime_date": (document.getElementById("crime_date").value),
                     "crime_time": (document.getElementById("crime_time").value),
-                    "crime_description": (document.getElementById("crime_description").value),
+                    "crime_description": (document.getElementById("crime_desc").value),
                     "area_pin": document.getElementById("area_pin").value,
                     "police_id": document.getElementById("police_id").value,
                     "curr_status": (document.getElementById("curr_status").value),
@@ -327,6 +326,8 @@ App = {
         xhr.setRequestHeader('Content-Type', 'application/json');
         console.log(dta);
         xhr.send(dta);
+        alert("REcord Updated!!");
+        App.getlitigations();
     
     },
 

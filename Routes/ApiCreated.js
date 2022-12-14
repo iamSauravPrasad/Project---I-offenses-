@@ -69,7 +69,7 @@ app.post('/authenticateinsert', (req, res) => {
     //    console.log(req.body);
     let auth = req.body.auth;
     console.log(auth);
-    sqlconnection.query("insert into litigation(crime_type,crime_place,crime_time,crime_description,area_pin,police_id,reported_id) values('" + auth.crime_type + "','" + auth.crime_place + "','" + auth.crime_time + "','" + auth.crime_description + "'," + auth.area_pin + "," + auth.police_id + "," + auth.reported_id +");", (err, rows, fields) => {
+    sqlconnection.query("insert into litigation(crime_type,crime_place,crime_time,crime_description,area_pin,police_id,crime_date,curr_status) values('" + auth.crime_type + "','" + auth.crime_place + "','" + auth.crime_time + "','" + auth.crime_description + "'," + auth.area_pin + "," + auth.police_id + ",'"+auth.crime_date+"','"+auth.curr_status+"');", (err, rows, fields) => {
         if (!err) {
             console.log("Submitted");
             res.send('Inserted successfully');
@@ -319,8 +319,8 @@ app.get('/litigations/:id', (req, res) => {
 // <-----------------------------------------------Update case details from litigation------------------------------------------------!>
 app.post('/updatecase', (req, res) => {
         console.log(req.body);
-         let update = req.body.update;
-         console.log(update);
+         let add = req.body.update;
+         console.log(add);
          sqlconnection.query("update litigation set crime_type = '"+add.crime_type+"',crime_place='"+add.crime_place+"',crime_date='"+add.crime_date+"',crime_time='"+add.crime_time+"',crime_description='"+add.crime_description+"',area_pin='"+add.area_pin+"',police_id='"+add.police_id+"',curr_status='"+add.curr_status+"' where crime_id = "+add.crime_id+";", (err, rows, fields) => {
              if (!err)
              {
