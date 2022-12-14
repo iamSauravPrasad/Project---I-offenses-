@@ -55,6 +55,8 @@ App = {
         xhr.setRequestHeader('Content-Type', 'application/json');
         console.log(dta);
         xhr.send(dta);
+        alert("REcord Added Successfully!!");
+        location.replace("./litigation.html")
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4) {
                App.getreported();
